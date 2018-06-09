@@ -1,4 +1,12 @@
-import System.IO  
+import System.Environment
+import System.IO
   
 main = do
-  writeFile "junk.txt" "hello, junk"
+  args <- getArgs
+  writeFile (head args) ("\    
+	\    .globl _main\n\
+	\_main:\n\
+	\    movl    $"++ show 2 ++ ", %eax\n\
+	\    ret\n\
+	\")
+
