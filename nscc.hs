@@ -3,9 +3,11 @@ import System.IO
   
 main = do
   args <- getArgs
-  writeFile (head args) ("\    
-	\    .globl _main\n\
-	\_main:\n\
+  let cFile = (head args)
+  let assFile = (take ((length cFile) - 1) cFile) ++ "s"
+  writeFile assFile ("\    
+	\    .globl main\n\
+	\main:\n\
 	\    movl    $"++ show 2 ++ ", %eax\n\
 	\    ret\n\
 	\")
